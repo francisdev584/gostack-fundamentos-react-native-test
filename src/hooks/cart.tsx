@@ -49,8 +49,8 @@ const CartProvider: React.FC = ({ children }) => {
       if (productExists > -1) {
         const temp = [...products];
         temp[productExists].quantity += 1;
-        setProducts(temp);
         await AsyncStorage.setItem('@GoMarketplace:Cart', JSON.stringify(temp));
+        setProducts(temp);
       }
     },
     [products],
@@ -62,13 +62,10 @@ const CartProvider: React.FC = ({ children }) => {
       const productExists = products.findIndex(item => item.id === id);
 
       if (productExists > -1) {
-        if (products[productExists].quantity <= 1) {
-          return;
-        }
         const temp = [...products];
         temp[productExists].quantity -= 1;
-        setProducts(temp);
         await AsyncStorage.setItem('@GoMarketplace:Cart', JSON.stringify(temp));
+        setProducts(temp);
       }
     },
     [products],
